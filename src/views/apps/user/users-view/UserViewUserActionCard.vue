@@ -1,0 +1,74 @@
+<template>
+  <b-card
+    no-body
+    class="border-primary"
+  >
+    <b-card-header class="d-flex justify-content-between align-items-center pt-75 pb-25">
+      <feather-icon
+        icon="StarIcon"
+        class="mr-75"
+      />
+      <h5 class="mb-0">
+        Action
+      </h5>
+      <b-badge variant="light-primary">
+        Basic
+      </b-badge>
+      <small class="text-muted w-100">Action features</small>
+    </b-card-header>
+
+    <b-card-body>
+      <ul class="list-unstyled my-1">
+        <li>
+          <td>{{ userData.handy }}</td>
+        </li>
+      </ul>
+      <b-button
+        v-ripple.400="'rgba(255, 255, 255, 0.15)'"
+        variant="primary"
+        block
+      >
+        Update
+      </b-button>
+    </b-card-body>
+  </b-card>
+</template>
+
+<script>
+import {
+  BCard, BCardHeader, BCardBody, BBadge, BButton,
+} from 'bootstrap-vue'
+import Ripple from 'vue-ripple-directive'
+import useUsersList from '../users-list/useUsersList'
+import {avatarText} from "@core/utils/filter"
+
+export default {
+  directives: {
+    Ripple,
+  },
+  components: {
+    BCard,
+    BCardHeader,
+    BCardBody,
+    BBadge,
+    BButton,
+  },
+  props: {
+    userData: {
+      type: Object,
+      required: true,
+    },
+  },
+  setup() {
+    const { resolveUserRoleVariant } = useUsersList()
+    return {
+      avatarText,
+      resolveUserRoleVariant,
+    }
+  },
+}
+</script>
+
+<style>
+
+</style>
